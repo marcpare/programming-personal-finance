@@ -11,6 +11,7 @@
   "author": "Marc Paré",
   "license": "MIT",
   "dependencies": {
+    "ampersand-collection": "^1.4.2",
     "ampersand-view": "^7.2.0",
     "browserify": "^9.0.3",
     "csv-parse": "^0.1.0",
