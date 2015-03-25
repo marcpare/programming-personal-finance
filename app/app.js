@@ -15,7 +15,13 @@ require('pepper-mint')(username, password)
   console.log(err);
 });
 
+
 var AppView = require('./components/app/app-view');
 var appView = new AppView();
 appView.render();
 document.querySelector('#app').appendChild(appView.el);
+
+
+// Display the transaction table
+
+// 
