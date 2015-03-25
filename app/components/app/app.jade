@@ -1,4 +1,19 @@
-div  
+div
+  div#placeholder(style="width:400px; height: 400px;")
+
+  if expenses.length > 0
+    table(data-hook="expenses")
+      thead
+        tr
+          each header in expenseHeaders
+            th #{header}
+      tbody      
+        each expense in expenses
+          tr
+            each x in expense
+              td #{x}
+  
+    
   table(data-hook="transactions")
     thead
       tr
