@@ -16,13 +16,12 @@ module.exports = {
         });
         
         var hiddenCategories = {
-          'Credit Card Payment': true
+          'Credit Card Payment': true,
+          'Investment': true
         }
         
         transactions.forEach(function (t) {
-          
           t.hidden = !!hiddenCategories[t.Category]
-          
         });
       
         return e;
