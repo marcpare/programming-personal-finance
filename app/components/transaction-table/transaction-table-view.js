@@ -1,4 +1,5 @@
 var moment = require('moment');
+var _ = require('underscore');
 var AmpersandView = require('ampersand-view');
 
 var TransactionTableView = AmpersandView.extend({
@@ -27,9 +28,18 @@ var TransactionTableView = AmpersandView.extend({
     
     // Attach DataTable
     if (this.collection.length > 0) {
+      
+      var hiddenIndex = _.indexOf(this.headers, 'hidden');
+      
       el = this.queryByHook('table');
       $(el).DataTable({
-        lengthMenu: [[-1], ['All']]
+        lengthMenu: [[-1], ['All']],
+        createdRow: function (row, data, index) {
+          console.log(data[hiddenIndex]);
+          if (data[hiddenIndex] === 'true') {
+            $(row).addClass('hidden');
+          }          
+        }
       });       
     }
   }

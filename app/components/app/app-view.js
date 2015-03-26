@@ -2,7 +2,8 @@ var moment = require('moment');
 var AmpersandView = require('ampersand-view');
 var Collection = require('ampersand-collection');
 var TransactionTableView = require('../transaction-table/transaction-table-view');
-var Expenses = require('../../services/transactions');
+var Expenses = require('../../services/expenses');
+var logError = require('../../log-error');
 
 var AppView = AmpersandView.extend({
   template: require('./app.jade'),
@@ -12,11 +13,13 @@ var AppView = AmpersandView.extend({
     // attach to DOM right away
     this.renderWithTemplate();
     document.querySelector('#app').appendChild(this.el);
-        
-    Expenses.fetch().then(function (expenses) {
-      this.expenses = new Backbone.Collection(expenses);
-      this.render();
-    }.bind(this));
+
+    Expenses.fetch()
+      .then(function (expenses) {
+        this.expenses = new Collection(expenses);
+        this.render();
+      }.bind(this))
+      .catch(logError);
   },
   
   render: function () {
@@ -54,10 +57,7 @@ var AppView = AmpersandView.extend({
     this.renderWithTemplate();    
     
     if (this.expenses) {
-      
-      console.log('got expenses');
-      console.log(this.expenses);
-      
+            
       this.renderSubview(new TransactionTableView({
         collection: this.expenses
       }, '[data-hook=transactions-table]'));
