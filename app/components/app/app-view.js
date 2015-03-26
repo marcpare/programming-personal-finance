@@ -1,6 +1,7 @@
 var moment = require('moment');
 var AmpersandView = require('ampersand-view');
-var AmpersandCollection = require('ampersand-collection');
+var Collection = require('ampersand-collection');
+var TransactionTableView = require('../transaction-table/transaction-table-view');
 var Transactions = require('../../services/transactions');
 
 var AppView = AmpersandView.extend({
@@ -68,20 +69,16 @@ var AppView = AmpersandView.extend({
     
     if (this.transactions.length > 0) {
       
-      $('[data-hook=expenses]').DataTable({
-        lengthMenu: [[-1], ['All']]
-      });
-      
-      $('[data-hook=transactions]').DataTable({
-        lengthMenu: [[-1], ['All']]
-      });
-      
-      var d = expenses;
-      console.log(d);
-
-      $.plot("#placeholder", [d], {
-        xaxis: { mode: "time" }
-      });
+      this.renderSubview(new TransactionTableView({
+        collection: new Collection(this.transactions)
+      }, '[data-hook=transactions-table]'));
+            
+      // var d = expenses;
+      // console.log(d);
+      //
+      // $.plot("#chart", [d], {
+      //   xaxis: { mode: "time" }
+      // });
       
     }     
   }

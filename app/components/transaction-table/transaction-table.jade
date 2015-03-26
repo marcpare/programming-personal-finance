@@ -1,0 +1,13 @@
+div
+  table(data-hook="table")
+    thead
+      tr
+        each header in headers
+          th #{header}
+    tbody
+      if transactions.length > 0
+        each item in transactions
+          tr
+            if item
+              each header in headers
+                td #{item[header]}

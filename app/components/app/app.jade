@@ -1,28 +1,3 @@
 div
-  div#placeholder(style="width:400px; height: 400px;")
-
-  if expenses.length > 0
-    table(data-hook="expenses")
-      thead
-        tr
-          each header in expenseHeaders
-            th #{header}
-      tbody      
-        each expense in expenses
-          tr
-            each x in expense
-              td #{x}
-  
-    
-  table(data-hook="transactions")
-    thead
-      tr
-        each header in headers
-          th #{header}
-    tbody
-      if transactions.length > 0
-        each item in transactions
-          tr
-            if item
-              each header in headers
-                td #{item[header]}
+  div#chart(style="width:400px; height: 400px;")
+  div(data-hook="transactions-table")

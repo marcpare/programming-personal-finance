@@ -2,10 +2,15 @@
   "name": "programming-personal-finance",
   "version": "0.0.1",
   "description": "",
+  "window": {
+    "width": 1000,
+    "height": 900
+  },
   "main": "app/index.html",
   "scripts": {
     "watch": "watchify app/app.js -t jadeify -o app/bundle.js",
-    "start": "npm run watch & nw",
+    "env": "source .env",
+    "start": "npm run env && npm run watch & nw",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marc Paré",
