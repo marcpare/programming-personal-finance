@@ -6,16 +6,12 @@ var ExpensesPlotView = AmpersandView.extend({
   // data: pairs of points to plot [[x, y], [x, y], ...]
   initialize: function (options) {
     options = options || {};
+    this.plotOptions = options.plotOptions || {};
     this.data = options.data || [];
   },
   
   plot: function () {
-    this.$elPlot.plot([this.data], {
-      xaxis: { 
-        mode: "time",
-        timeformat: "%b %d %Y"
-      }
-    });
+    this.$elPlot.plot([this.data], this.plotOptions);
   },
   
   render: function () {

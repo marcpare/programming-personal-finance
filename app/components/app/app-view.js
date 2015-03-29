@@ -42,9 +42,15 @@ var AppView = AmpersandView.extend({
         .flot();
       
       var plotView = new PlotView({
-        data: d
+        data: d,
+        plotOptions: {
+          xaxis: { 
+            mode: "time",
+            timeformat: "%b %d %Y"
+          }
+        }
       });
-      
+            
       this.renderSubview(plotView, '[data-hook=expenses-plot]');
       plotView.plot();
       
@@ -57,7 +63,14 @@ var AppView = AmpersandView.extend({
         .flot();
 
       plotView = new PlotView({
-        data: d
+        data: d,
+        plotOptions: {
+          bars: { show: true, barWidth: 0.5, fill: 0.9 },
+          xaxis: { 
+            mode: "time",
+            timeformat: "%b %d %Y"
+          }
+        }
       });
       this.renderSubview(plotView, '[data-hook=monthly-expenses-plot]');
       plotView.plot();
