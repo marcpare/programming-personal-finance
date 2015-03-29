@@ -19,7 +19,10 @@ var ExpensesPlotView = AmpersandView.extend({
     console.log(this.data);
     
     $(elPlot).plot([this.data], {
-      xaxis: { mode: "time" }
+      xaxis: { 
+        mode: "time",
+        timeformat: "%b %Y"
+      }
     });
     
     return this;

@@ -11,6 +11,12 @@ var Transactions = require('./transactions');
 
 function Expenses (data) {
   this.data = data;
+  
+  // wrap dates in `moment`
+  this.data.forEach(function (d) {
+    d.Date = moment(d.Date);
+  });
+  
 }
 
 Expenses.prototype.pipe = function () {
@@ -32,7 +38,7 @@ ExpensesPipe.prototype.sort = function (key, order, options) {
   this.data.sort(function (a, b) {
     var a = a[key];
     var b = b[key];
-    if (options.unix) { a = moment(a).unix(); b = moment(b).unix(); }
+    if (options.unix) { a = a.unix(); b = b.unix(); }
     return (a-b)*order;
   });
   return this;
@@ -45,7 +51,7 @@ ExpensesPipe.prototype.cumsum = function () {
 
 ExpensesPipe.prototype.flot = function () {
   var data = this.data.map(function (t) {
-    return [moment(t.Date).unix(), parseFloat(t.Amount)];
+    return [t.Date, parseFloat(t.Amount)];
   });
   
   if (this.applyCumsum) {
