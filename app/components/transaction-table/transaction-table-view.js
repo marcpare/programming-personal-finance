@@ -28,7 +28,6 @@ var TransactionTableView = AmpersandView.extend({
     
     // Attach DataTable
     if (this.collection.length > 0) {
-      
       var hiddenIndex = _.indexOf(this.headers, 'hidden');
       
       el = this.queryByHook('table');

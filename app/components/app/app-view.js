@@ -61,11 +61,11 @@ var AppView = AmpersandView.extend({
             
       this.renderSubview(new TransactionTableView({
         collection: this.expenses
-      }, '[data-hook=transactions-table]'));
+      }), '[data-hook=transactions-table]');
       
       this.renderSubview(new PlotView({
         collection: this.expenses
-      }, '[data-hook=expenses-plot]'));
+      }), '[data-hook=expenses-plot]');
             
       // var d = expenses;
       // console.log(d);
