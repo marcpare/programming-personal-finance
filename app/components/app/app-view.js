@@ -70,9 +70,6 @@ var AppView = AmpersandView.extend({
       // var d = expenses;
       // console.log(d);
       //
-      // $.plot("#chart", [d], {
-      //   xaxis: { mode: "time" }
-      // });
       
     }     
   }
