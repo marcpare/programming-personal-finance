@@ -7,7 +7,6 @@ var TransactionTableView = AmpersandView.extend({
   
   // collection: collection of transactions
   initialize: function () {
-    
   },
   
   render: function () {    

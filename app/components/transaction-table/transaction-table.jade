@@ -10,4 +10,8 @@ div
           tr
             if item
               each header in headers
-                td #{item[header]}
+                td 
+                  if header === 'Date'
+                    | #{item[header].format('MMMM D, YYYY')}
+                  else
+                    | #{item[header]}

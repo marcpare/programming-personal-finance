@@ -27,7 +27,8 @@ var AppView = AmpersandView.extend({
         
     this.renderWithTemplate();    
     
-    if (this.expenses) {            
+    if (this.expenses) {
+      
       this.renderSubview(new TransactionTableView({
         collection: this.expenses.pipe().after('01/01/2015').collection()
       }), '[data-hook=transactions-table]');
@@ -40,9 +41,27 @@ var AppView = AmpersandView.extend({
         .cumsum()
         .flot();
       
-      this.renderSubview(new PlotView({
+      var plotView = new PlotView({
         data: d
-      }), '[data-hook=expenses-plot]');      
+      });
+      
+      this.renderSubview(plotView, '[data-hook=expenses-plot]');
+      plotView.plot();
+      
+      d = this.expenses
+        .pipe()
+        .after('01/01/2015')
+        .filter(function (d) { return !d.hidden; })
+        .sort('Date', 'asc', {unix: true})
+        .cumsum()
+        .flot();
+    
+      plotView = new PlotView({
+        data: d
+      });
+      this.renderSubview(plotView, '[data-hook=monthly-expenses-plot]');
+      plotView.plot();
+      
     }     
   }
 });

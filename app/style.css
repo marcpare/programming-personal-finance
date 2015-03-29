@@ -1,5 +1,6 @@
 .plot-container { 
   background: #eee;
+  height: 400px;
 }
 
 table.dataTable tr.hidden {

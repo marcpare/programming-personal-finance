@@ -89,7 +89,8 @@ module.exports = {
         
         var hiddenCategories = {
           'Credit Card Payment': true,
-          'Investment': true
+          'Investment': true,
+          'Federal Tax': true
         }
         
         transactions.forEach(function (t) {

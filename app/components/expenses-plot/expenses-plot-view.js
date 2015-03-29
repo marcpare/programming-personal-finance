@@ -9,19 +9,20 @@ var ExpensesPlotView = AmpersandView.extend({
     this.data = options.data || [];
   },
   
-  render: function () {
-    this.renderWithTemplate();
-    
-    var elPlot = this.queryByHook('plot');
-    var $elPlot = $(elPlot);
-        
-    $(elPlot).plot([this.data], {
+  plot: function () {
+    this.$elPlot.plot([this.data], {
       xaxis: { 
         mode: "time",
         timeformat: "%b %d %Y"
       }
     });
-    
+  },
+  
+  render: function () {
+    this.renderWithTemplate();
+    var elPlot = this.queryByHook('plot');
+    var $elPlot = $(elPlot);
+    this.$elPlot = $elPlot;    
     return this;
   }
   
