@@ -53,7 +53,7 @@ var AppView = AmpersandView.extend({
         .after('01/01/2015')
         .filter(function (d) { return !d.hidden; })
         .sort('Date', 'asc', {unix: true})
-        .cumsum()
+        .binMonths()
         .flot();
     
       plotView = new PlotView({

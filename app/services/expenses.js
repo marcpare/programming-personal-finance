@@ -3,6 +3,7 @@
 // Expenses are a filtered and annotated list of Transactions
 // 
 // 
+var _ = require('underscore');
 var moment = require('moment');
 var pepperMint = require('pepper-mint');
 var Collection = require('ampersand-collection');
@@ -62,6 +63,11 @@ ExpensesPipe.prototype.cumsum = function () {
   return this;
 };
 
+ExpensesPipe.prototype.binMonths = function () {
+  this.binMonths = true;
+  return this;
+};
+
 ExpensesPipe.prototype.flot = function () {
   var data = this.data.map(function (t) {
     return [t.Date, parseFloat(t.Amount)];
@@ -74,6 +80,17 @@ ExpensesPipe.prototype.flot = function () {
       return [e[0], cumsum];
     });
   }
+  
+  if (this.binMonths) {
+    data = _.groupBy(data, function (d) { return d[0].month(); });
+    data = _.pairs(data);
+    data = data.map(function (bin) {
+      return _.reduce(bin[1], function (memo, d) {
+        return [memo[0], memo[1] + d[1]];
+      }, [bin[0][0], 0.0]);
+    });
+  }
+  
   this.data = data;
   return this.data;
 };
