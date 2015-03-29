@@ -10,7 +10,7 @@
   "scripts": {
     "watch": "watchify app/app.js -t jadeify -o app/bundle.js",
     "env": "source .env",
-    "start": "npm run env && npm run watch & nw",
+    "start": "npm run env; npm run watch & nw",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marc Paré",
