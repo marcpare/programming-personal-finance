@@ -26,6 +26,7 @@ Expenses.prototype.pipe = function () {
 
 function ExpensesPipe (data) {
   this.applyCumsum = false;
+  this.applyBinMonths = false;
   this.data = data;
 }
 
@@ -64,7 +65,7 @@ ExpensesPipe.prototype.cumsum = function () {
 };
 
 ExpensesPipe.prototype.binMonths = function () {
-  this.binMonths = true;
+  this.applyBinMonths = true;
   return this;
 };
 
@@ -81,7 +82,7 @@ ExpensesPipe.prototype.flot = function () {
     });
   }
   
-  if (this.binMonths) {
+  if (this.applyBinMonths) {
     data = _.groupBy(data, function (d) { return d[0].month(); });
     data = _.pairs(data);
     data = data.map(function (bin) {

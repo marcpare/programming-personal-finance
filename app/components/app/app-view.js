@@ -55,7 +55,7 @@ var AppView = AmpersandView.extend({
         .sort('Date', 'asc', {unix: true})
         .binMonths()
         .flot();
-    
+
       plotView = new PlotView({
         data: d
       });
