@@ -29,11 +29,13 @@ var AppView = AmpersandView.extend({
     
     if (this.expenses) {            
       this.renderSubview(new TransactionTableView({
-        collection: this.expenses.pipe().collection()
+        collection: this.expenses.pipe().after('01/01/2015').collection()
       }), '[data-hook=transactions-table]');
           
       var d = this.expenses
         .pipe()
+        .after('01/01/2015')
+        .filter(function (d) { return !d.hidden; })
         .sort('Date', 'asc', {unix: true})
         .cumsum()
         .flot();

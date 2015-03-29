@@ -14,14 +14,11 @@ var ExpensesPlotView = AmpersandView.extend({
     
     var elPlot = this.queryByHook('plot');
     var $elPlot = $(elPlot);
-    
-    console.log('here is my data');
-    console.log(this.data);
-    
+        
     $(elPlot).plot([this.data], {
       xaxis: { 
         mode: "time",
-        timeformat: "%b %Y"
+        timeformat: "%b %d %Y"
       }
     });
     

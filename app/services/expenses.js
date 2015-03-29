@@ -32,6 +32,19 @@ ExpensesPipe.prototype.collection = function () {
   return new Collection(this.data);
 };
 
+ExpensesPipe.prototype.filter = function (f) {
+  this.data = this.data.filter(f);
+  return this;
+};
+
+ExpensesPipe.prototype.after = function (dateString) {
+  var afterThisDate = moment(dateString);
+  this.data = this.data.filter(function (d) {
+    return d.Date >= afterThisDate;
+  });
+  return this;
+};
+
 ExpensesPipe.prototype.sort = function (key, order, options) {
   options = options || {};
   order = order === 'asc' ? 1 : -1;
