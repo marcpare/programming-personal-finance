@@ -17,60 +17,30 @@ var AppView = AmpersandView.extend({
 
     Expenses.fetch()
       .then(function (expenses) {
-        this.expenses = new Collection(expenses);
+        this.expenses = expenses;
         this.render();
       }.bind(this))
       .catch(logError);
   },
   
   render: function () {
-    
-    // calculateExpenses
-    
-    // var expenses = this.transactions.map(function (t) {
-    //   return [moment(t.Date), parseFloat(t.Amount), t['Transaction Type']];
-    // });
-    //
-    // expenses = expenses.filter(function (e) {
-    //   return e[2] === 'debit';
-    // });
-    //
-    // expenses = expenses.map(function (e) {
-    //   return [e[0], e[1]];
-    // });
-    //
-    // expenses.sort(function (a, b) {
-    //   return a[0].unix()-b[0].unix();
-    // });
-    //
-    // var cumsum = 0;
-    // expenses = expenses.map(function (e) {
-    //   cumsum += e[1];
-    //   return [e[0], cumsum];
-    // });
-    //
-    // this.expenses = expenses;
-    // this.expenseHeaders = [
-    //   'Date',
-    //   'Amount'
-    // ];
-    
+        
     this.renderWithTemplate();    
     
-    if (this.expenses) {
-            
+    if (this.expenses) {            
       this.renderSubview(new TransactionTableView({
-        collection: this.expenses
+        collection: this.expenses.pipe().collection()
       }), '[data-hook=transactions-table]');
+          
+      var d = this.expenses
+        .pipe()
+        .sort('Date', 'asc', {unix: true})
+        .cumsum()
+        .flot();
       
       this.renderSubview(new PlotView({
-        collection: this.expenses
-      }), '[data-hook=expenses-plot]');
-            
-      // var d = expenses;
-      // console.log(d);
-      //
-      
+        data: d
+      }), '[data-hook=expenses-plot]');      
     }     
   }
 });
