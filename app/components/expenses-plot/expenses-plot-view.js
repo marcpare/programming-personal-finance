@@ -9,10 +9,11 @@ var ExpensesPlotView = AmpersandView.extend({
   },
   
   render: function () {
-    console.log('Expenses rendering');
     this.renderWithTemplate();
     
     var elPlot = this.queryByHook('plot');
+    var $elPlot = $(elPlot);
+    
     $(elPlot).plot([[1,2], [3, 4]], {
       xaxis: { mode: "time" }
     });

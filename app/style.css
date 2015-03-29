@@ -1,8 +1,7 @@
-.plot {
-  height: 500px;
-  width: 100%;
+.plot-container { 
   background: #eee;
 }
+
 table.dataTable tr.hidden {
   background: yellow;
 }
