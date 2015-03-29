@@ -2,6 +2,7 @@ var moment = require('moment');
 var AmpersandView = require('ampersand-view');
 var Collection = require('ampersand-collection');
 var TransactionTableView = require('../transaction-table/transaction-table-view');
+var PlotView = require('../expenses-plot/expenses-plot-view');
 var Expenses = require('../../services/expenses');
 var logError = require('../../log-error');
 
@@ -61,6 +62,10 @@ var AppView = AmpersandView.extend({
       this.renderSubview(new TransactionTableView({
         collection: this.expenses
       }, '[data-hook=transactions-table]'));
+      
+      this.renderSubview(new PlotView({
+        collection: this.expenses
+      }, '[data-hook=expenses-plot]'));
             
       // var d = expenses;
       // console.log(d);

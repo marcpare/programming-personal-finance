@@ -35,7 +35,6 @@ var TransactionTableView = AmpersandView.extend({
       $(el).DataTable({
         lengthMenu: [[-1], ['All']],
         createdRow: function (row, data, index) {
-          console.log(data[hiddenIndex]);
           if (data[hiddenIndex] === 'true') {
             $(row).addClass('hidden');
           }          
