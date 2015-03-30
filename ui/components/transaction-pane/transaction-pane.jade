@@ -1,1 +1,10 @@
-div hello there
+div
+  if this.transactions
+    table
+      tr
+        for header in this.headers
+          th #{header}
+      for tr in this.transactions.data
+        tr
+          for header in this.headers
+            td #{tr[header]}
