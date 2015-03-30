@@ -1,7 +1,8 @@
 div
   div.header
-    a.header-action(data-hook="plots") Plots
-    a.header-action(data-hook="pivot") Pivot
+    a.header-action(data-hook="header-action" data-show="plots") Plots
+    a.header-action(data-hook="header-action" data-show="pivot") Pivot
+  div(data-hook="page-container")
   div.plot-container(data-hook="expenses-plot")
   div.plot-container(data-hook="monthly-expenses-plot")
   div(data-hook="transactions-table")
