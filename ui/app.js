@@ -1,13 +1,7 @@
 
 // Add template helpers
 var AmpersandView = require('ampersand-view');
-var moment = require('moment');
-AmpersandView.prototype.h = {
-  month: function (number) {
-    return moment().month(number).format('MMMM');
-  }
-}
-
+AmpersandView.prototype.h = require('./helpers');
 
 var AppView = require('./components/app/app-view');
 var appView = new AppView();

@@ -15,7 +15,6 @@ var PivotPageView = AmpersandView.extend({
         this.pivot = this.expenses
           .pipe()
           .after('01/01/2015')
-          .filter(function (d) { return !d.hidden; })
           .pivot();
         
         console.log(this.pivot);

@@ -9,5 +9,5 @@ div
         tr
           td #{category}
           for month in pivot.months
-            td #{(pivot.data[month]||{})[category] || 0}
+            td #{h.dollars(  (pivot.data[month]||{})[category] || 0 )}
           
