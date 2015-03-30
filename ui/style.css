@@ -1,8 +1,28 @@
+body {
+  font-family: 'Open Sans',Helvetica,Arial,sans-serif;
+  font-size: 12px;
+  background: #dddfe4;
+}
+
+a { 
+  cursor: pointer;
+}
+
+/* header */
+.header-action {
+  font-size: 13px;
+  display: inline-block;
+  padding: 20px 30px;
+  text-transform: uppercase;
+}
+
+/* plots */
 .plot-container { 
   background: #eee;
   height: 400px;
 }
 
+/* transactions table */
 table.dataTable tr.hidden {
   background: yellow;
 }
