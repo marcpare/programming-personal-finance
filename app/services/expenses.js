@@ -17,7 +17,10 @@ function Expenses (data) {
     d.Date = moment(d.Date);
     
     // convert Amount to cents
-    d.Amount = Math.floor(parseFloat(d.Amount)*100);
+    if (!d._Amount) {
+      d._Amount = d.Amount;
+      d.Amount = Math.floor(parseFloat(d._Amount)*100);
+    }
   });
   
 }
@@ -75,6 +78,7 @@ ExpensesPipe.prototype.pivot = function () {
   // collect all categories
   var categories = _.pluck(this.data, 'Category');
   categories = _.uniq(categories);
+  categories.sort();
   
   // collect months
   var dates = _.pluck(this.data, 'Date');
