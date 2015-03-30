@@ -3,7 +3,7 @@ var TransactionTableView = require('../transaction-table/transaction-table-view'
 var PlotView = require('../expenses-plot/expenses-plot-view');
 var logError = require('../../log-error');
 
-var PlotsView = AmpersandView.extend({
+var PlotsPageView = AmpersandView.extend({
   template: require('./plots-page.jade'),
   
   initialize: function (options) {
@@ -74,4 +74,4 @@ var PlotsView = AmpersandView.extend({
   }
   
 });
-module.exports = PlotsView;
+module.exports = PlotsPageView;

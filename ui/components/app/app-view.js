@@ -3,7 +3,7 @@ var AmpersandView = require('ampersand-view');
 var ViewSwitcher = require('ampersand-view-switcher');
 var Collection = require('ampersand-collection');
 var PlotsPage = require('../plots-page/plots-page-view');
-var PivotView = require('../expenses-pivot/expenses-pivot-view');
+var PivotPage = require('../pivot-page/pivot-page-view');
 
 var AppView = AmpersandView.extend({
   template: require('./app.jade'),
@@ -25,7 +25,7 @@ var AppView = AmpersandView.extend({
   show: function (show) {
     var View = {
       plots: PlotsPage,
-      pivot: PivotView
+      pivot: PivotPage
     }[show];
     this.pageSwitcher.set(new View());
   },

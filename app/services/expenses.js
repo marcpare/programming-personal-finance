@@ -12,10 +12,13 @@ var Transactions = require('./transactions');
 
 function Expenses (data) {
   this.data = data;
-  
-  // wrap dates in `moment`
+    
   this.data.forEach(function (d) {
+    // wrap dates in `moment`
     d.Date = moment(d.Date);
+    
+    // convert Amount to cents
+    d.Amount = Math.floor(parseFloat(d.Amount)*100);
   });
   
 }
@@ -67,6 +70,30 @@ ExpensesPipe.prototype.cumsum = function () {
 ExpensesPipe.prototype.binMonths = function () {
   this.applyBinMonths = true;
   return this;
+};
+
+ExpensesPipe.prototype.pivot = function () {
+  // collect all categories
+  var categories = _.pluck(this.data, 'Category');
+  categories = _.uniq(categories);
+  
+  function sum (list) {
+    return _.reduce(list, function (memo, num) { return memo + num; }, 0);
+  };
+  
+  var data = this.data;
+  data = _.groupBy(data, function (d) { return d.Date.month(); });
+  data = _.mapObject(data, function (transactions, month) {
+    transactions = _.groupBy(transactions, 'Category');
+    return _.mapObject(transactions, function (ts) {
+      return sum(_.pluck(ts, 'Amount'));
+    });
+  });
+  
+  return {
+    categories: categories,
+    data: data
+  };
 };
 
 ExpensesPipe.prototype.flot = function () {
