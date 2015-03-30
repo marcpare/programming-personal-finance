@@ -76,6 +76,14 @@ ExpensesPipe.prototype.pivot = function () {
   var categories = _.pluck(this.data, 'Category');
   categories = _.uniq(categories);
   
+  // collect months
+  var dates = _.pluck(this.data, 'Date');
+  var months = _.map(dates, function (d) { 
+    return d.month();
+  });
+  months = _.uniq(months);
+  months.sort();
+  
   var data = this.data;
   data = _.groupBy(data, function (d) { return d.Date.month(); });
   data = _.mapObject(data, function (transactions, month) {
@@ -87,6 +95,7 @@ ExpensesPipe.prototype.pivot = function () {
   
   return {
     categories: categories,
+    months: months,
     data: data
   };
 };

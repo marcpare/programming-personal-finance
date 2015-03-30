@@ -1,1 +1,13 @@
-div hello again
+div
+  if pivot
+    table
+      tr
+        th
+        for month in pivot.months
+          th #{h.month(month)}
+      for category in pivot.categories
+        tr
+          td #{category}
+          for month in pivot.months
+            td #{(pivot.data[month]||{})[category] || 0}
+          

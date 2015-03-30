@@ -6,19 +6,20 @@ var PivotPageView = AmpersandView.extend({
   
   initialize: function (options) {
     options = options || {};
+    this.pivot = false;
     
     App.services.Expenses.fetch()
       .then(function (expenses) {
         this.expenses = expenses;
         
-        var d = this.expenses
+        this.pivot = this.expenses
           .pipe()
           .after('01/01/2015')
           .filter(function (d) { return !d.hidden; })
           .pivot();
-          
-        console.log(d);
         
+        console.log(this.pivot);
+          
         this.render();
       }.bind(this))
       .catch(logError);
