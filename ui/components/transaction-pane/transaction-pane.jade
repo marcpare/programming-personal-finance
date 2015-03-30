@@ -8,9 +8,9 @@ div
         th Account
       for tr in this.transactions.data
         tr
-          td #{this.h.date(tr.Date)}
+          td #{h.date(tr.Date)}
           td
             | #{tr.Description}
             div.quiet #{tr['Original Description']}
-          td #{tr.Amount}
+          td #{h.dollars(tr.Amount)}
           td #{tr['Account Name']}

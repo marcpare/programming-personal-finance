@@ -27,10 +27,4 @@ TransactionCollection.prototype.sort = function (key, order, options) {
   return this;
 };
 
-TransactionCollection.prototype.headers = function () {
-  if (!this.data) return [];
-  if (this.data.length === 0) return [];
-  return _.keys(this.data[0]);
-};
-
 module.exports = TransactionCollection;
