@@ -25,7 +25,7 @@ var AppView = AmpersandView.extend({
   
   render: function () {
         
-    this.renderWithTemplate();    
+    this.renderWithTemplate();
     
     if (this.expenses) {
       
