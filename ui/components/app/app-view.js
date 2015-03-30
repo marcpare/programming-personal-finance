@@ -3,7 +3,6 @@ var AmpersandView = require('ampersand-view');
 var Collection = require('ampersand-collection');
 var TransactionTableView = require('../transaction-table/transaction-table-view');
 var PlotView = require('../expenses-plot/expenses-plot-view');
-var Expenses = require('../../services/expenses');
 var logError = require('../../log-error');
 
 var AppView = AmpersandView.extend({
@@ -15,7 +14,7 @@ var AppView = AmpersandView.extend({
     this.renderWithTemplate();
     document.querySelector('#app').appendChild(this.el);
 
-    Expenses.fetch()
+    app.services.Expenses.fetch()
       .then(function (expenses) {
         this.expenses = expenses;
         this.render();

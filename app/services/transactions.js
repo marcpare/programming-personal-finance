@@ -11,9 +11,9 @@ module.exports = {
   },
   
   fetch: function () {
-    var username = nodeprocess.env['MINT_USERNAME'];
-    var password = nodeprocess.env['MINT_PASSWORD']; 
-    var useMock = nodeprocess.env['USE_MOCK_TRANSACTIONS'];
+    var username = process.env['MINT_USERNAME'];
+    var password = process.env['MINT_PASSWORD']; 
+    var useMock = process.env['USE_MOCK_TRANSACTIONS'];
     
     if (useMock) return this.mock();
     
