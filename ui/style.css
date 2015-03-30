@@ -42,4 +42,5 @@ td.pivot-category {
 .pivot-cell:hover {
   background: #727a8e;
   color: white;
+  border-radius: 10px;
 }
