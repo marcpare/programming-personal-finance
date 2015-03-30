@@ -7,7 +7,7 @@ var TransactionPaneView = AmpersandView.extend({
     options = options || {};
     this.transactions = options.transactions;
     this.transactions = new App.collections.Transaction(this.transactions);
-    this.transactions.sort('date');
+    this.transactions.sort('Date', 'asc');
   },
     
   render: function () {
