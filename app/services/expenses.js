@@ -93,7 +93,10 @@ ExpensesPipe.prototype.pivot = function () {
   data = _.mapObject(data, function (transactions, month) {
     transactions = _.groupBy(transactions, 'Category');
     return _.mapObject(transactions, function (ts) {
-      return _.sum(_.pluck(ts, 'Amount'));
+      return {
+        transactions: ts,
+        sum: _.sum(_.pluck(ts, 'Amount'))
+      };
     });
   });
   

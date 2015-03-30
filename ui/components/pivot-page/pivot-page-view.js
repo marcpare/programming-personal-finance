@@ -1,4 +1,5 @@
 var AmpersandView = require('ampersand-view');
+var TransactionPane = require('../transaction-pane/transaction-pane-view');
 var logError = require('../../log-error');
 
 var PivotPageView = AmpersandView.extend({
@@ -11,6 +12,7 @@ var PivotPageView = AmpersandView.extend({
   initialize: function (options) {
     options = options || {};
     this.pivot = false;
+    this.transactionPane = false;
     
     App.services.Expenses.fetch()
       .then(function (expenses) {
@@ -20,8 +22,6 @@ var PivotPageView = AmpersandView.extend({
           .pipe()
           .after('01/01/2015')
           .pivot();
-        
-        console.log(this.pivot);
           
         this.render();
       }.bind(this))
@@ -31,10 +31,14 @@ var PivotPageView = AmpersandView.extend({
   loadTransactions: function (e) {
     var cell = $(e.target);
     var month = cell.data('month');
-    var category = cell.data('category');
+    var category = cell.data('category');    
+    var transactions = (((this.pivot.data[month]||{})[category]||{}).transactions||[]);
     
-    console.log(month);
-    console.log(category);
+    if (this.transactionPane) this.transactionPane.remove();    
+    this.transactionPane = new TransactionPane({
+      transactions: transactions
+    });
+    this.renderSubview(this.transactionPane, '[data-hook=transactions]');
   },
     
   render: function () {

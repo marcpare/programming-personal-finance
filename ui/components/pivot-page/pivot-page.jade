@@ -1,4 +1,5 @@
 div
+  div(data-hook="transactions") this is the transaction pane
   if pivot
     table.pivot
       tr
@@ -10,4 +11,4 @@ div
           td.pivot-category #{category}
           for month in pivot.months
             td.pivot-cell(data-hook="pivot-cell", data-month="#{month}" data-category="#{category}") 
-              | #{h.dollars((pivot.data[month]||{})[category] || 0 )}
+              | #{h.dollars(((pivot.data[month]||{})[category]||{}).sum || 0 )}
