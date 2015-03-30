@@ -4,6 +4,10 @@ var logError = require('../../log-error');
 var PivotPageView = AmpersandView.extend({
   template: require('./pivot-page.jade'),
   
+  events: {
+    'click [data-hook=pivot-cell]': 'loadTransactions'
+  },
+  
   initialize: function (options) {
     options = options || {};
     this.pivot = false;
@@ -22,6 +26,15 @@ var PivotPageView = AmpersandView.extend({
         this.render();
       }.bind(this))
       .catch(logError);
+  },
+  
+  loadTransactions: function (e) {
+    var cell = $(e.target);
+    var month = cell.data('month');
+    var category = cell.data('category');
+    
+    console.log(month);
+    console.log(category);
   },
     
   render: function () {

@@ -1,13 +1,13 @@
 div
   if pivot
-    table
+    table.pivot
       tr
         th
         for month in pivot.months
           th #{h.month(month)}
       for category in pivot.categories
         tr
-          td #{category}
+          td.pivot-category #{category}
           for month in pivot.months
-            td #{h.dollars(  (pivot.data[month]||{})[category] || 0 )}
-          
+            td.pivot-cell(data-hook="pivot-cell", data-month="#{month}" data-category="#{category}") 
+              | #{h.dollars((pivot.data[month]||{})[category] || 0 )}

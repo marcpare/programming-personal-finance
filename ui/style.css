@@ -26,3 +26,20 @@ a {
 table.dataTable tr.hidden {
   background: yellow;
 }
+
+/* pivot table */
+.pivot th, .pivot td {
+  text-align: left;
+  padding: 3px 5px;
+  min-width: 50px;
+}
+td.pivot-category {
+  text-align: right;
+}
+.pivot-cell {
+  cursor: pointer;
+}
+.pivot-cell:hover {
+  background: #727a8e;
+  color: white;
+}
