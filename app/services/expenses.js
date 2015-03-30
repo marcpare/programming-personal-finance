@@ -9,7 +9,6 @@ var pepperMint = require('pepper-mint');
 var Collection = require('ampersand-collection');
 var Transactions = require('./transactions');
 
-
 function Expenses (data) {
   this.data = data;
     
@@ -77,16 +76,12 @@ ExpensesPipe.prototype.pivot = function () {
   var categories = _.pluck(this.data, 'Category');
   categories = _.uniq(categories);
   
-  function sum (list) {
-    return _.reduce(list, function (memo, num) { return memo + num; }, 0);
-  };
-  
   var data = this.data;
   data = _.groupBy(data, function (d) { return d.Date.month(); });
   data = _.mapObject(data, function (transactions, month) {
     transactions = _.groupBy(transactions, 'Category');
     return _.mapObject(transactions, function (ts) {
-      return sum(_.pluck(ts, 'Amount'));
+      return _.sum(_.pluck(ts, 'Amount'));
     });
   });
   
