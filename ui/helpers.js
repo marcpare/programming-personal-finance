@@ -5,5 +5,8 @@ module.exports = {
   },
   dollars: function (cents) {
     return Math.round(cents / 100).toLocaleString();
+  },
+  date: function (date) {
+    return date.format('MMM DD')
   }
 };

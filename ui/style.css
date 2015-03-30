@@ -7,6 +7,9 @@ body {
 a { 
   cursor: pointer;
 }
+.quiet { 
+  color: #aaa;
+}
 
 /* header */
 .header-action {
@@ -43,4 +46,18 @@ td.pivot-category {
   background: #727a8e;
   color: white;
   border-radius: 10px;
+}
+.transactions-pane {
+  padding-top: 40px;
+  background: white;
+  border-left: 1px solid rgba(114,122,142,0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  bottom: 0;
+}
+.transactions-pane td, .transactions-pane th {
+  text-align: left;
+  padding: 5px 8px;
 }
