@@ -11,6 +11,10 @@ a {
   color: #aaa;
 }
 
+.save-as {
+  display: none;
+}
+
 /* header */
 .header-action {
   font-size: 13px;
